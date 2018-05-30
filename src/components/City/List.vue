@@ -1,6 +1,7 @@
 <template>
-    <div class="list">
-        <div class="area">
+    <div class="list" ref="wrapper">
+     <div>
+         <div class="area">
             <div class="title">
                 当前城市
             </div>
@@ -76,12 +77,23 @@
                <li>上海</li>
            </ul>
         </div>
+     </div>
     </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
+
 export default {
-    name:'CityList'
+    name:'CityList',
+    data(){
+        return {
+           
+        }
+    },
+    mounted(){
+        this.scroll = new BScroll(this.$refs.wrapper)
+    }
 }
 </script>
 
