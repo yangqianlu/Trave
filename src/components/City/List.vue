@@ -16,67 +16,23 @@
                 热门城市
             </div>
             <div class="list_content">
-                <div class="wrap">
-                    <div class="item">北京</div>
-                </div>
-                <div class="wrap">
-                    <div class="item">北京</div>
-                </div>
-                <div class="wrap">
-                    <div class="item">北京</div>
-                </div>
-                <div class="wrap">
-                    <div class="item">北京</div>
-                </div>
-                <div class="wrap">
-                    <div class="item">北京</div>
+                <div class="wrap" v-for="item of hot" :key="item.id">
+                    <div class="item">{{item.name}}</div>
                 </div>
             </div>
         </div>
-        <div class="area">
+        <div class="area" v-for="(city,key) of cities" :key="key">
             <div class="title">
-                A
+                {{key}}
             </div>
            <ul class="ul_list">
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
+               <li v-for="item of city" :key="item.id">{{item.name}}</li>
+              
            </ul>
         </div>
-        <div class="area">
-            <div class="title">
-                A
-            </div>
-           <ul class="ul_list">
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-           </ul>
-        </div>
-        <div class="area">
-            <div class="title">
-                A
-            </div>
-           <ul class="ul_list">
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-           </ul>
-        </div>
-        <div class="area">
-            <div class="title">
-                A
-            </div>
-           <ul class="ul_list">
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-               <li>上海</li>
-           </ul>
-        </div>
+       
+       
+        
      </div>
     </div>
 </template>
@@ -86,6 +42,7 @@ import BScroll from 'better-scroll'
 
 export default {
     name:'CityList',
+    props:['hot',"cities"],
     data(){
         return {
            
@@ -130,5 +87,6 @@ export default {
             li
                 line-height :30px
                 border-bottom:1px solid #ccc
+                padding-left 5px
 
 </style>
