@@ -28,7 +28,4 @@ export default {
         padding:0 0.1rem
         box-sizing :border-box
         border-radius:5px
-
-
-
 </style>
