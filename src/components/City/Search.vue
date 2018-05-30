@@ -13,14 +13,13 @@ export default {
 <style lang="stylus" scoped>
  @import  '~@/assets/styles/varibles.styl'
  .search
-  
     height :0.76rem
     line-height :0.76rem
     background :$bgcolor
     padding:0 0.1rem
     margin-top:-1px
     input 
-        width :100%
+        width :100%;
         height :0.64rem;
         line-height :0.64rem
         text-align center
