@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="carrousel">
         <swiper :options="swiperOption">
-            <swiper-slide v-for="slide in swiperSlides" :key="slide.id">
+            <swiper-slide v-for="slide in list" :key="slide.id">
                 <img class="swiper-img" :src="slide.imgUrl" alt="">
             </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
@@ -13,24 +13,16 @@
 <script>
 export default {
   name: "wrapper",
+  props:['list'],
   data() {
     return {
       swiperOption: {
         pagination: ".swiper-pagination",
-        loop:true
-        
-      },
-      swiperSlides: [
-          {
-            id:"001",
-            imgUrl:"https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png"
-          }, 
-          {   
-              id:"002",
-              imgUrl:"https://img1.qunarzz.com/vc/31/cc/75/3c014d49de263aea6bf9bffeda.png"
-          }
-          ]
-    };
+        loop:true,
+        autoplay:true,
+        speed:1500, 
+      }
+      }
   }
 };
 </script>
@@ -39,7 +31,7 @@ export default {
     background #fff
 .carrousel 
     height 0
-    padding-bottom 50%
+    padding-bottom 31%
     overflow hidden
     .swiper-img
         width 100%

@@ -7,13 +7,16 @@
       <span class="iconfont searchIcon">&#xe632;</span>
       <input type="text" placeholder="输入城市">
     </div>
-    <div class="header-right">城市 <span class="iconfont">&#xe64a;</span></div>
+    <router-link to="/city">
+      <div class="header-right">{{city}} <span class="iconfont">&#xe64a;</span></div>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HomeHeader',
+  props:['city'],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -26,7 +29,7 @@ export default {
 <style scoped lang="stylus">
 @import '~@/assets/styles/varibles.styl'
   .header
-    line-height:0.86rem
+    line-height:$headerHeight
     background: $bgcolor
     color #fff
     width:100%
@@ -39,8 +42,8 @@ export default {
     .header-right
       width :1.24rem
       margin-left:0.1rem
+      color :#fff
     .header-input
-      
       flex:1
       position:relative
       .searchIcon
