@@ -7,7 +7,7 @@
             </div>
             <div class="list_content">
                 <div class="wrap">
-                    <div class="item">北京</div>
+                    <div class="item">{{this.currentCity}}</div>
                 </div>
             </div>
         </div>
@@ -17,16 +17,16 @@
             </div>
             <div class="list_content">
                 <div class="wrap" v-for="item of hot" :key="item.id">
-                    <div class="item">{{item.name}}</div>
+                    <div class="item" @click="handleCity(item.name)">{{item.name}}</div>
                 </div>
             </div>
         </div>
-        <div class="area" v-for="(city,key) of cities" :key="key">
+        <div class="area" v-for="(city,key) of cities" :key="key" :ref="key">
             <div class="title">
                 {{key}}
             </div>
            <ul class="ul_list">
-               <li v-for="item of city" :key="item.id">{{item.name}}</li>
+               <li v-for="item of city" :key="item.id" @click="handleCity(item.name)">{{item.name}}</li>
               
            </ul>
         </div>
@@ -38,18 +38,49 @@
 </template>
 
 <script>
+import {mapState,mapMutations} from 'vuex'
 import BScroll from 'better-scroll'
 
 export default {
     name:'CityList',
-    props:['hot',"cities"],
+    props:['hot',"cities",'letter'],
     data(){
         return {
            
         }
     },
+    computed:{
+        ...mapState({
+            'currentCity':'city'
+        })
+    },
+    watch:{
+        letter(){
+            if(this.letter){
+                //console.log(this.$refs[this.letter][0])
+                var ele=this.$refs[this.letter][0]
+                this.scroll.scrollToElement(ele)
+            }
+        }
+    },
+    methods:{
+        handleCity(city){
+            //console.log(city)
+            //第一种形式
+            this.$store.dispatch('cityChange',city)
+            //第二种形式
+            //this.cityChange(city) 报错
+            this.$router.push('/')
+            
+            //this.$store.commit('cityChange',city) 也可以用这种形式 store里action就可以不用了
+        }
+        //第二种形式配合
+        //...mapMutations(['cityChange']) //报错
+        
+    },
     mounted(){
         this.scroll = new BScroll(this.$refs.wrapper)
+        
     }
 }
 </script>

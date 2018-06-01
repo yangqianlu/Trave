@@ -1,9 +1,9 @@
 <template>
     <div class="city">
         <header-city></header-city>
-        <city-search></city-search>
-        <city-list :hot="hotCities" :cities="cities"></city-list>
-        <alpha-bet :cities="cities"></alpha-bet>
+        <city-search :cities="cities"></city-search>
+        <city-list :hot="hotCities" :cities="cities" :letter="letter"></city-list>
+        <alpha-bet @change="receive" :cities="cities"></alpha-bet>
     </div>
 </template>
 <script>
@@ -23,7 +23,8 @@ export default {
     data(){
         return {
             hotCities:[],
-            cities:{}
+            cities:{},
+            letter:""
         }
     },
     mounted(){
@@ -32,7 +33,14 @@ export default {
             that.hotCities=res.data.data.hotCities
             that.cities=res.data.data.cities
         })
+    },
+    methods:{
+        receive(msg){
+            //console.log(msg)
+            this.letter=msg
+        }
     }
+
 }
 </script>
 <style>

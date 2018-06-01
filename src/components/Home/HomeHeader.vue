@@ -8,19 +8,24 @@
       <input type="text" placeholder="输入城市">
     </div>
     <router-link to="/city">
-      <div class="header-right">{{city}} <span class="iconfont">&#xe64a;</span></div>
+      <!-- <div class="header-right">{{this.$store.state.city}} <span class="iconfont">&#xe64a;</span></div> -->
+      <div class="header-right">{{this.city}} <span class="iconfont">&#xe64a;</span></div>
     </router-link>
   </div>
 </template>
 
 <script>
+import {mapState,mapGetters} from 'vuex'
 export default {
   name: 'HomeHeader',
-  props:['city'],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  computed: {
+    ...mapState(['city']) ,//将state中的city 映射过来
+    ...mapGetters(['doubleCity']) //将state中的city 映射过来
   }
 }
 </script>
@@ -40,7 +45,8 @@ export default {
         text-align :center
         font-size :0.4rem
     .header-right
-      width :1.24rem
+      min-width :1.04rem
+      paddding:0.1rem
       margin-left:0.1rem
       color :#fff
     .header-input

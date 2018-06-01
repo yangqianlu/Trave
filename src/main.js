@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import './assets/styles/reset.css'// 重置样式
 import  './assets/styles/border.css' //手机边框显示2px
 import fastClick from 'fastclick'  //手机点击延迟300ms
@@ -17,6 +18,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
