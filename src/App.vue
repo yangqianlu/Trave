@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+    <!-- exclude="HomeDetail" vue页面name名为HomeDetail的页面不被缓存 -->
+    <keep-alive exclude="HomeDetail">
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 

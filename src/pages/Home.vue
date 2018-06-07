@@ -15,6 +15,7 @@ import HomeIcon from '@/components/Home/HomeIcon'
 import GuessLike from '@/components/Home/GuessLike'
 import HomeWeek from '@/components/Home/HomeWeek'
 import axios from 'axios'
+import {mapState} from 'vuex'
 export default {
     name:'Home',
     data(){
@@ -22,8 +23,12 @@ export default {
             swiperList:[],
             iconList:[],
             recommendList:[],
-            weekendList:[]
+            weekendList:[],
+            lastCity:''
         }
+    },
+    computed: {
+        ...mapState(['city'])
     },
     components:{
         HomeHeader,
@@ -33,17 +38,26 @@ export default {
         HomeWeek
     },
     mounted(){
-        let that=this
-        axios.get('/static/mock/index.json')
-        .then(function(res){
-            // console.log(res.data)
-            // const data=res.data
-            that.swiperList=res.data.data.swiperList
-            that.iconList=res.data.data.iconList
-            that.recommendList=res.data.data.recommendList
-            that.weekendList=res.data.data.weekendList
-           
-        })
+        this.lastCity=this.city
+        this.getCity()
+    },
+   methods:{
+       getCity(){
+           axios.get('/static/mock/index.json?city='+this.city)
+        .then(this.getCityList)
+       },
+       getCityList(res){
+            this.swiperList=res.data.data.swiperList
+            this.iconList=res.data.data.iconList
+            this.recommendList=res.data.data.recommendList
+            this.weekendList=res.data.data.weekendList
+       }
+   },
+    activated () {
+        if(this.lastCity!=this.city){
+            this.lastCity=this.city
+            this.getCity()
+        }
     }
 }
 </script>

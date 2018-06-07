@@ -1,14 +1,18 @@
 <template>
     <div class="guess">
         <h1 class="guess_title">猜你喜欢</h1>
-        <div class="guess_content" v-for="item in list" :key="item.id">
-            <img class="guess_img" :src="item.imgUrl" alt="">
-            <div class="guess_right">
-                <div class="mp_like_title">{{item.title}}</div>
-                <span class="mp-comment-num">{{item.desc}}</span>
-                <button>查看详情</button>
+      
+            <div class="guess_content" v-for="item in list" :key="item.id">
+                <router-link :to="'/detail/'+item.id" tag="div" class="content">
+                    <img class="guess_img" :src="item.imgUrl" alt="">
+                    <div class="guess_right">
+                        <div class="mp_like_title">{{item.title}}</div>
+                        <span class="mp-comment-num">{{item.desc}}</span>
+                        <button>查看详情</button>
+                    </div>
+                </router-link>
             </div>
-        </div>
+       
     </div>
 </template>
 <script>
@@ -33,8 +37,10 @@ export default {
         margin-bottom: 16px
         margin-top: 5px
     .guess_content  
-        display :flex
+       
         margin-bottom:20px
+        .content
+            display:flex
         .guess_img
             width :2rem
             height 2rem
